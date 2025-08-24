@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 Below commands you can run: 
-npx create-react-app <repo-name>
+### 'npx create-react-app repo-name'
 
 ## Available Scripts
 
@@ -19,9 +19,10 @@ Make sure following is removed from .gitignore
 /build
 
 ## Update package.json: Add a homepage key:
-"homepage": "https://<username>.github.io/<repo-name>"
+### "homepage": "https://<username>.github.io/repo-name"
 
 ## Add deploy scripts to package.json:
+
 "scripts": {
   "predeploy": "npm run build",
   "deploy": "gh-pages -d build"
@@ -42,4 +43,4 @@ npm run deploy
 
 - Wait a minute: GitHub Pages sometimes takes ~30–60 seconds to update. You might’ve caught it mid-publish.
 
-- Visit Your Webpage: Head to https://<username>.github.io/<repo-name>
+- Visit Your Webpage: Head to "https://username.github.io/repo-name"
