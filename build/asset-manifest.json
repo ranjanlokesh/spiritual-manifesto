@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/spiritual-manifesto/static/css/main.3ec02a3c.css",
+    "main.js": "/spiritual-manifesto/static/js/main.c40cb22e.js",
+    "index.html": "/spiritual-manifesto/index.html",
+    "main.3ec02a3c.css.map": "/spiritual-manifesto/static/css/main.3ec02a3c.css.map",
+    "main.c40cb22e.js.map": "/spiritual-manifesto/static/js/main.c40cb22e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3ec02a3c.css",
+    "static/js/main.c40cb22e.js"
+  ]
+}
