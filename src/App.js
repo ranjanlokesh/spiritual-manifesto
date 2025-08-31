@@ -2,6 +2,7 @@
 import Navbar from './components/Navbar';
 import Section from './components/Section';
 import ShareInsight from './components/ShareInsight';
+import ReflectionsArchive from './components/ReflectionsArchive';
 import Footer from './components/Footer';
 import './styles/App.css';
 import React, { useEffect } from 'react';
@@ -19,6 +20,7 @@ function App() {
       <Navbar />
       <Section />
       <ShareInsight />
+      <ReflectionsArchive />
       <Footer />
     </div>
   );
