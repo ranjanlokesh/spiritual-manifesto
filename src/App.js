@@ -1,5 +1,7 @@
-import Header from './components/Header';
+//import Header from './components/Header';
+import Navbar from './components/Navbar';
 import Section from './components/Section';
+import ShareInsight from './components/ShareInsight';
 import Footer from './components/Footer';
 import './styles/App.css';
 import React, { useEffect } from 'react';
@@ -14,8 +16,9 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
+      <Navbar />
       <Section />
+      <ShareInsight />
       <Footer />
     </div>
   );
