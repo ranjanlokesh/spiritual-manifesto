@@ -3,11 +3,30 @@ import React, { useState } from 'react';
 const ShareInsight = () => {
   const [insight, setInsight] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
-    // Future: Send insight to backend or store locally
+    setError('');
+    try {
+      const response = await fetch('http://localhost:8000/submit-insight', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({ insight }),
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+        setInsight('');
+      } else {
+        const data = await response.json();
+        setError(data.message || 'Something went wrong.');
+      }
+    } catch (err) {
+      setError('Unable to connect to the server.');
+    }
   };
 
   return (
@@ -33,6 +52,7 @@ const ShareInsight = () => {
               marginBottom: '12px',
               resize: 'vertical',
             }}
+            required
           />
           <button
             type="submit"
@@ -47,10 +67,13 @@ const ShareInsight = () => {
           >
             Submit Reflection
           </button>
+          {error && (
+            <p style={{ color: 'red', marginTop: '10px' }}>{error}</p>
+          )}
         </form>
       ) : (
         <div style={{ marginTop: '20px', color: '#4b0082' }}>
-          <p>🙏 Thank you for sharing. Your insight will help shape this evolving space.</p>
+          <p>🙏 Thank you for sharing. Your insight has been received and stored.</p>
         </div>
       )}
     </section>
