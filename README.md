@@ -22,7 +22,6 @@ Make sure following is removed from .gitignore
 #### `"homepage": "https://<username>.github.io/<repo-name>"`
 
 ## Add deploy scripts to package.json:
-
 #### `"scripts": {`
 ####   `"predeploy": "npm run build",`
 ####   `"deploy": "gh-pages -d build"`
