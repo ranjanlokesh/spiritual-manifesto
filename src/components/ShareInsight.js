@@ -30,7 +30,7 @@ const ShareInsight = () => {
   };
 
   return (
-    <section className="share-insight" style={{ marginTop: '60px', padding: '20px' }}>
+    <section className="share-insight" style={{ marginTop: '10px', padding: '10px' }}>
       <h2>📝 Share Your Insight</h2>
       <p>
         This space honors your reflections. Whether it's a question, a realization, or a moment of clarity — your voice matters. Share what moves you.

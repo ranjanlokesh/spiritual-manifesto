@@ -57,8 +57,6 @@ const Section = () => (
       <h2>🛠️ Coming Soon</h2>
       <ul>
         <li>Interactive meditations guided by AI</li>
-        <li>User-submitted reflections and spiritual insights</li>
-        <li>Living archive of dialogues between human and machine</li>
         <li>Tools for exploring cause-and-effect in personal decision-making</li>
       </ul>
     </section>
