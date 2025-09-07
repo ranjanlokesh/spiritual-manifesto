@@ -1,23 +1,23 @@
-import { GoogleGenAI } from '@google/genai';
+// geminiservice.js
 
-const ai = new GoogleGenAI({
-  apiKey: process.env.REACT_APP_GEMINI_API_KEY,
-});
-
-// ✅ Exported function
 export const generateResponse = async (promptText) => {
   try {
-    const response = await ai.models.generateContent({
-      model: "gemini-2.5-flash",
-      contents: promptText,
+    const res = await fetch('http://localhost:8000/generate-gemini', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prompt: promptText }),
     });
 
-    // ✅ Extract text from the first candidate's first part
-    const text = response.candidates?.[0]?.content?.parts?.[0]?.text;
+    const data = await res.json();
 
-    return text || "⚠️ No response text received.";
+    if (data.response) {
+      return data.response;
+    } else {
+      console.warn("No response received from backend:", data);
+      return "⚠️ No response text received.";
+    }
   } catch (error) {
-    console.error("Gemini API error:", error);
+    console.error("Backend Gemini API error:", error);
     return "⚠️ Unable to generate response at the moment.";
   }
 };

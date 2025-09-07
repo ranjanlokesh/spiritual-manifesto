@@ -7,20 +7,24 @@ const LivingArchivePage = () => {
   const [aiResponse, setAiResponse] = useState('');
   const [archive, setArchive] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);  // ✅ New error state
 
   useEffect(() => {
-    fetch('http://localhost:8000/get-reflections')
-      .then(res => res.json())
-      .then(data => {
-        // ✅ Adjust to match backend response format
+    const fetchArchive = async () => {
+      try {
+        const res = await fetch('http://localhost:8000/get-reflections');
+        if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+        const data = await res.json();
         setArchive(Array.isArray(data.reflections) ? data.reflections : []);
-        setLoading(false);
-      })
-      .catch(err => {
+      } catch (err) {
         console.error('Failed to load archive:', err);
-        setArchive([]);
+        setError('⚠️ Unable to load reflections. Backend may be offline.');
+      } finally {
         setLoading(false);
-      });
+      }
+    };
+
+    fetchArchive();
   }, []);
 
   const handleSubmit = async (e) => {
@@ -30,13 +34,19 @@ const LivingArchivePage = () => {
 
     const newEntry = { prompt: userInput, response };
 
-    await fetch('http://localhost:8000/save-reflection', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(newEntry),
-    });
+    try {
+      await fetch('http://localhost:8000/save-reflection', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newEntry),
+      });
 
-    setArchive(prev => Array.isArray(prev) ? [newEntry, ...prev] : [newEntry]);
+      setArchive(prev => Array.isArray(prev) ? [newEntry, ...prev] : [newEntry]);
+    } catch (err) {
+      console.error('Failed to save reflection:', err);
+      setError('⚠️ Unable to save reflection. Backend may be offline.');
+    }
+
     setUserInput('');
   };
 
@@ -81,7 +91,14 @@ const LivingArchivePage = () => {
         </section>
       )}
 
-      {!loading && archive.length > 0 && (
+      {error && (
+        <div style={{ marginTop: '30px', color: 'darkred' }}>
+          <p>{error}</p>
+          <p>Please check your backend server and try again.</p>
+        </div>
+      )}
+
+      {!loading && !error && archive.length > 0 && (
         <section className="ai-archive" style={{ marginTop: '40px' }}>
           <h2>🗂️ AI Reflection Archive</h2>
           {archive.map((entry, index) => (
@@ -96,7 +113,7 @@ const LivingArchivePage = () => {
         </section>
       )}
 
-      {!loading && archive.length === 0 && (
+      {!loading && !error && archive.length === 0 && (
         <p style={{ marginTop: '20px', color: '#777' }}>No reflections saved yet.</p>
       )}
     </section>
