@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/spiritual-manifesto/static/css/main.3ec02a3c.css",
-    "main.js": "/spiritual-manifesto/static/js/main.c40cb22e.js",
+    "main.css": "/spiritual-manifesto/static/css/main.984ee175.css",
+    "main.js": "/spiritual-manifesto/static/js/main.5b586ef6.js",
     "index.html": "/spiritual-manifesto/index.html",
-    "main.3ec02a3c.css.map": "/spiritual-manifesto/static/css/main.3ec02a3c.css.map",
-    "main.c40cb22e.js.map": "/spiritual-manifesto/static/js/main.c40cb22e.js.map"
+    "main.984ee175.css.map": "/spiritual-manifesto/static/css/main.984ee175.css.map",
+    "main.5b586ef6.js.map": "/spiritual-manifesto/static/js/main.5b586ef6.js.map"
   },
   "entrypoints": [
-    "static/css/main.3ec02a3c.css",
-    "static/js/main.c40cb22e.js"
+    "static/css/main.984ee175.css",
+    "static/js/main.5b586ef6.js"
   ]
 }
